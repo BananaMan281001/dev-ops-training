@@ -6,3 +6,5 @@ A git repo to demonstrate different areas of dev ops and to continuously build n
 2. Build docker image with `docker build -t devops-app .`
 3. Run docker image with `docker run -p 5000:5000 devops-app`
 4. Access docker container from http://127.0.0.1:5000
+
+# Currently not working. trying to get the back end and front end to run together without having to run them together seperately
