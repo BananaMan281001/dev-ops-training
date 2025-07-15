@@ -1,21 +1,22 @@
 import { useEffect, useState } from "react";
+import './App.css'
 
 function App() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:5000/")
+    fetch('/api/')
       .then((res) => res.json())
       .then((data) => setMessage(data.message))
-      .catch((err) => console.error(err));
-  }, []);
+      .catch(() => setMessage("Error calling API"))
+  }, [])
 
   return (
     <div>
-      <h1>My Garage IS NOT DA BEST</h1>
-      <p>{message}</p>
+      <h1>My Garage the firkin best</h1>
+      <h1>Api message: {message}</h1>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

@@ -1,12 +1,10 @@
 from flask import Flask
-from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)  # Allow frontend to talk to backend
 
 @app.route("/")
 def home():
-    return {"message": "Welcome to My Cool Garage API! Testing changes"}
+    return {"message": "Its working!"}
 
 @app.route("/api/mods", methods=["GET"])
 def get_mods():

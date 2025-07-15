@@ -7,5 +7,9 @@ A git repo to demonstrate different areas of dev ops and to continuously build n
 3. To see the debug information for the frontend, run `docker compose logs -f frontend`
 4. To see the debug information for the backend, run `docker compose logs -f backend`
 5. Access front end server at http://localhost:3000/
+6. To shut down the server, run `docker compose down`
 
-# Currently not working. trying to get the back end and front end to run together without having to run them together seperately
+# Notes
+- Using BananaMan281001 git repo
+- To see backend changes, the browser will need to be refreshed
+- Front end changes will automatically change without needing to refresh the browser

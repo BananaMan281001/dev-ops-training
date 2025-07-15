@@ -1,12 +1,13 @@
 # Frontend Dockerfile (React)
-FROM node:24-alpine
+FROM node:20-alpine
 
 WORKDIR /app
 
-COPY package*.json ./
-
+# Install dependencies
+COPY package.json package-lock.json ./
 RUN npm install
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+# Start Vite dev server
+CMD ["npm", "run", "dev"]
