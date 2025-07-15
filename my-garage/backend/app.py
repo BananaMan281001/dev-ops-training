@@ -6,11 +6,11 @@ CORS(app)  # Allow frontend to talk to backend
 
 @app.route("/")
 def home():
-    return {"message": "Welcome to My Garage API!"}
+    return {"message": "Welcome to My Cool Garage API!"}
 
 @app.route("/api/mods", methods=["GET"])
 def get_mods():
     return {"mods": []}  # Placeholder for now
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=5000)

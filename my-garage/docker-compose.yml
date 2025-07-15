@@ -9,6 +9,9 @@ services:
       - ./backend:/app
     networks:
       - garage-net
+    environment:
+      FLASK_ENV: development # Enable development mode
+      FLASK_DEBUG: 1         # Enable debug mode with reloader
 
   frontend:
     build: ./frontend
@@ -22,6 +25,8 @@ services:
       - backend
     networks:
       - garage-net
+    environment:
+      - WATCHPACK_POLLING=true # For hot-reloading the front end
 
 networks:
   garage-net:
