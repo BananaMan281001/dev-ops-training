@@ -6,7 +6,7 @@ function App() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="bg-cover bg-center h-[80vh] text-white flex items-center justify-center" style={{ backgroundImage: `url('https://images.unsplash.com/photo-1619541244740-6d1187c8b9c0')` }}>
+      <section className="bg-cover bg-center h-[80vh] text-white flex items-center justify-center" style={{ backgroundImage: `url("/images/86.jpg")` }}>
         <div className="bg-black bg-opacity-60 p-10 rounded-xl text-center">
           <h2 className="text-4xl md:text-6xl font-bold mb-4">Built for Performance</h2>
           <p className="text-lg md:text-xl">Tuning | Maintenance | Fabrication</p>
