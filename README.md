@@ -9,7 +9,8 @@ A git repo to demonstrate different areas of dev ops and to continuously build n
 5. Access front end server at http://localhost:3000/
 6. To shut down the server, run `docker compose down`
 
-# Notes
+# Dev Notes
 - Using BananaMan281001 git repo
 - To see backend changes, the browser will need to be refreshed
 - Front end changes will automatically change without needing to refresh the browser
+- When making changes to Dockerfiles, make sure to do `docker compose build` to reflect the changes
