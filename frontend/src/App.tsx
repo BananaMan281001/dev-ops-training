@@ -1,18 +1,8 @@
-import { useState } from "react";
+// import { useState } from "react";
 import Navbar from './components/Navbar'
-import { Modal } from "./components/Modal";
+import Services from "./components/Services"
 
 function App() {
-  const [selectedService, setSelectedService] = useState<{ title: string; icon: string } | null>(null);
-
-  const services = [
-    { title: "General Maintenance", icon: "🛠️" },
-    { title: "ECU Tuning", icon: "💻" },
-    { title: "Suspension Setup", icon: "🚗" },
-    { title: "Custom Fabrication", icon: "🔧" },
-    { title: "Track Prep", icon: "🏁" },
-    { title: "Brake Upgrades", icon: "🛑" },
-  ];
 
   return (
     <div className="bg-gray-100 min-h-screen text-gray-900 font-sans">
@@ -33,30 +23,9 @@ function App() {
       </section>
 
       {/* Services */}
-      <section className="py-16 bg-white px-6 max-w-6xl mx-auto">
-        <h3 className="text-3xl font-semibold text-center mb-10">Our Services</h3>
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {services.map((service) => (
-            <div
-              key={service.title}
-              className="bg-gray-100 p-6 rounded-xl shadow hover:shadow-lg transition cursor-pointer"
-              onClick={() => setSelectedService(service)}
-            >
-              <div className="text-4xl mb-4">{service.icon}</div>
-              <h4 className="text-xl font-semibold">{service.title}</h4>
-            </div>
-          ))}
-        </div>
+      <section>
+        <Services />
       </section>
-
-      {selectedService && (
-        <Modal isOpen={true} onClose={() => setSelectedService(null)}>
-          <div className="relative">
-            <h2 className="text-xl font-bold mb-2">{selectedService.title}</h2>
-            <p>Details about {selectedService.title} will go here.</p>
-          </div>
-        </Modal>
-      )}
 
       {/* Featured Cars */}
       <section className="py-16 px-6 bg-gray-200 max-w-6xl mx-auto">
