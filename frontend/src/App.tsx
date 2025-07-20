@@ -1,6 +1,19 @@
+import { useState } from "react";
 import Navbar from './components/Navbar'
+import { Modal } from "./components/Modal";
 
 function App() {
+  const [selectedService, setSelectedService] = useState<{ title: string; icon: string } | null>(null);
+
+  const services = [
+    { title: "General Maintenance", icon: "🛠️" },
+    { title: "ECU Tuning", icon: "💻" },
+    { title: "Suspension Setup", icon: "🚗" },
+    { title: "Custom Fabrication", icon: "🔧" },
+    { title: "Track Prep", icon: "🏁" },
+    { title: "Brake Upgrades", icon: "🛑" },
+  ];
+
   return (
     <div className="bg-gray-100 min-h-screen text-gray-900 font-sans">
       <Navbar />
@@ -23,15 +36,12 @@ function App() {
       <section className="py-16 bg-white px-6 max-w-6xl mx-auto">
         <h3 className="text-3xl font-semibold text-center mb-10">Our Services</h3>
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {[
-            { title: "General Maintenance", icon: "🛠️" },
-            { title: "ECU Tuning", icon: "💻" },
-            { title: "Suspension Setup", icon: "🚗" },
-            { title: "Custom Fabrication", icon: "🔧" },
-            { title: "Track Prep", icon: "🏁" },
-            { title: "Brake Upgrades", icon: "🛑" },
-          ].map((service) => (
-            <div key={service.title} className="bg-gray-100 p-6 rounded-xl shadow hover:shadow-lg transition">
+          {services.map((service) => (
+            <div
+              key={service.title}
+              className="bg-gray-100 p-6 rounded-xl shadow hover:shadow-lg transition cursor-pointer"
+              onClick={() => setSelectedService(service)}
+            >
               <div className="text-4xl mb-4">{service.icon}</div>
               <h4 className="text-xl font-semibold">{service.title}</h4>
             </div>
@@ -39,24 +49,33 @@ function App() {
         </div>
       </section>
 
+      {selectedService && (
+        <Modal isOpen={true} onClose={() => setSelectedService(null)}>
+          <div className="relative">
+            <h2 className="text-xl font-bold mb-2">{selectedService.title}</h2>
+            <p>Details about {selectedService.title} will go here.</p>
+          </div>
+        </Modal>
+      )}
+
       {/* Featured Cars */}
       <section className="py-16 px-6 bg-gray-200 max-w-6xl mx-auto">
         <h3 className="text-3xl font-semibold text-center mb-10">Featured Builds</h3>
         <div className="grid gap-8 md:grid-cols-2">
           {[
             {
-              name: "Toyota 86 — Track Build",
-              mods: "Coilovers, Roll Cage, Aero Kit, E85 Tune",
-              image: "https://images.unsplash.com/photo-1603570411674-b8c5bbd9ff30",
+              name: "RE Amemiya RX7",
+              mods: "Full body kit, single turbo conversion",
+              image: "/images/rx7.jpg",
             },
             {
-              name: "Nissan Silvia S15 — Drift Spec",
-              mods: "SR20DET, Angle Kit, LSD, Standalone ECU",
-              image: "https://images.unsplash.com/photo-1592890769094-8e5f2e1ad0c2",
+              name: "Honda NSX",
+              mods: "Custom wide body, carbon fibre hood",
+              image: "/images/nsx.jpg",
             },
           ].map((car) => (
             <div key={car.name} className="bg-white rounded-xl overflow-hidden shadow hover:shadow-lg transition">
-              <img src={car.image} alt={car.name} className="w-full h-60 object-cover" />
+              <img src={car.image} alt={car.name} className="w-full h-100 object-cover" />
               <div className="p-6">
                 <h4 className="text-xl font-bold mb-2">{car.name}</h4>
                 <p className="text-gray-700">{car.mods}</p>
@@ -76,23 +95,4 @@ function App() {
 }
 
 export default App
-
-
-// function App() {
-//   const [message, setMessage] = useState("");
-
-//   useEffect(() => {
-//     fetch('/api/')
-//       .then((res) => res.json())
-//       .then((data) => setMessage(data.message))
-//       .catch(() => setMessage("Error calling API"))
-//   }, [])
-
-//   return (
-//     <div>
-//       <h1>My Garage the firkin best</h1>
-//       <h1>Api message: {message}</h1>
-//     </div>
-//   )
-// }
 
