@@ -61,21 +61,20 @@ function Services() {
 
   // Use useEffect to fetch data when the component mounts
   useEffect(() => {
-    // Change this line:
     fetch('/api/services') // <-- Directly request '/api/services'
-      .then(response => {
+      .then(response => { // Check HTTP response first, vital for error handling 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         return response.json();
       })
-      .then((data: Service[]) => {
+      .then((data: Service[]) => { // Map services data to const services
         setServices(data);
       })
       .catch(error => {
         console.error("Error fetching services:", error);
       });
-  }, []); // Empty dependency array means this runs once on mount
+  }, []); // Empty dependency array means this runs once on mount and wont update even if the backend updates
 
   const handleServiceClick = (service: Service) => {
     setSelectedService(service);
