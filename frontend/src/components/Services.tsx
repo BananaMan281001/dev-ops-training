@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 // Define the type for a single service
@@ -13,15 +13,6 @@ type ModalProps = {
   onClose: () => void;
   service: Service; 
 };
-
-const services: Service[] = [ // Explicitly type the services array
-  { title: "General Maintenance", icon: "🛠️", description: "We provide general maintenance to all vehicles. This includes both major and minor services." },
-  { title: "ECU Tuning", icon: "💻", description: "We provide ECUTEK services which include flatfoot shifting, auto rev match, and launch control. We can also do dyno" },
-  { title: "Suspension Setup", icon: "🚗", description: "As previous V8 mechanics, we know the ins and outs of vehicle mechanic. We can help you fine tune your suspension to your liking whether you use it for the street or the track" },
-  { title: "Custom Fabrication", icon: "🔧", description: "We can custom fabricate anything for you whether its exhaust parts or general body work." },
-  { title: "Track Prep", icon: "🏁", description: "For those who are pushing to gain every millisecond, we also offer track focused modifications such as brake cooling and roll bars." },
-  { title: "Brake Upgrades", icon: "🛑", description: "For those who need more stopping power. We are proud to be sponsored by ENDLESS and offer installation of their great brakes" },
-];
 
 function Modal({ onClose, service }: ModalProps) { // Receive the 'service' prop
   return (
@@ -66,6 +57,25 @@ function Modal({ onClose, service }: ModalProps) { // Receive the 'service' prop
 function Services() {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedService, setSelectedService] = useState<Service | null>(null); // Use Service type here
+  const [services, setServices] = useState<Service[]>([]); // State to store fetched services
+
+  // Use useEffect to fetch data when the component mounts
+  useEffect(() => {
+    // Change this line:
+    fetch('/api/services') // <-- Directly request '/api/services'
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data: Service[]) => {
+        setServices(data);
+      })
+      .catch(error => {
+        console.error("Error fetching services:", error);
+      });
+  }, []); // Empty dependency array means this runs once on mount
 
   const handleServiceClick = (service: Service) => {
     setSelectedService(service);
