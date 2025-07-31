@@ -74,6 +74,7 @@ function Services() {
       .catch(error => {
         console.error("Error fetching services:", error);
       });
+      // return (() => { console.log("Hello")}) // Optional return function that runs on cleanup
   }, []); // Empty dependency array means this runs once on mount and wont update even if the backend updates
 
   const handleServiceClick = (service: Service) => {
